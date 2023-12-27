@@ -1,10 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Pigeon</title>
-</head>
-<body>
+<#import "parts/common.ftlh" as c>
+
+<@c.page>
 <div>Привет, Пользователь</div>
 <a href="/main">Главная страница</a>
-</body>
-</html>
+</@c.page>

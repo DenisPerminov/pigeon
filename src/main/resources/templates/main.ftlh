@@ -1,15 +1,8 @@
-<html>
-
-<head>
-    <title>Pigeon</title>
-</head>
-
-<body>
+<#import "parts/common.ftlh" as c>
+<#import "parts/login.ftlh" as l>
+<@c.page>
 <div>
-    <form action="/logout" method="post">
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-         <input type="submit" value="Выйти"/>
-    </form>
+   <@l.logout />
 </div>
 
 <div>
@@ -21,9 +14,8 @@
     </form>
 </div>
 <div>Список сообщений</div>
-<form method="post" action="filter">
-    <input type="text" name="tag"/>
-    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+<form method="get" action="/main">
+    <input type="text" name="tag" value="${tag}"/>
     <button type="submit">Найти</button>
 </form>
 <#list messages as message>
@@ -33,6 +25,7 @@
     <i>${message.tag}</i>
     <strong>${message.authorName}</strong>
 </div>
+<#else>
+Нет сообщений
 </#list>
-</body>
-</html>
+</@c.page>
