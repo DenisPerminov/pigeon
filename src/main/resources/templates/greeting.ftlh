@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Pigeon</title>
 </head>
 <body>
-<div>Hello, ${name}</div>
+<div>Привет, Пользователь</div>
+<a href="/main">Главная страница</a>
 </body>
 </html>

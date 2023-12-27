@@ -1,4 +1,4 @@
-package org.example.pigeon.perository;
+package org.example.pigeon.repository;
 
 import org.example.pigeon.model.Message;
 import org.springframework.data.repository.CrudRepository;
