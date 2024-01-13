@@ -24,17 +24,18 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false) String tag, Model model) {
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Message> messages = messageRepository.findAll();
 
-        if (tag != null && !tag.isEmpty()) {
-            messages = messageRepository.findByTag(tag);
+        if (filter != null && !filter.isEmpty()) {
+            messages = messageRepository.findByTag(filter);
+
         } else {
             messages = messageRepository.findAll();
         }
 
         model.addAttribute("messages", messages);
-        model.addAttribute("tag", tag);
+        model.addAttribute("filter", filter);
         return "main";
     }
 
@@ -43,12 +44,12 @@ public class MainController {
             @AuthenticationPrincipal User user,
             @RequestParam String text,
             @RequestParam String tag,
-            Map<String, Object> model) {
+            Model model) {
         Message message = new Message(text, tag, user);
         messageRepository.save(message);
 
         Iterable<Message> messages = messageRepository.findAll();
-        model.put("messages", messages);
+        model.addAttribute("messages", messages);
 
         return "main";
     }
